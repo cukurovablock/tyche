@@ -1,0 +1,20 @@
+├── .eslintrc.json
+├── .gitignore
+├── LICENSE
+├── next-env.d.ts
+├── next.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+├── public
+│  ├── next.svg
+│  └── vercel.svg
+├── README.md
+├── src
+│  └── app
+│    ├── favicon.ico
+│    ├── globals.css
+│    ├── layout.tsx
+│    └── page.tsx
+├── tailwind.config.ts
+└── tsconfig.json
