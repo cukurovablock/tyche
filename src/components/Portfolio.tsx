@@ -2,7 +2,7 @@ import React from "react";
 
 const Portfolio: React.FC = () => {
   return (
-    <div className="p-4 bg-slate-500 shadow rounded">
+    <div className="p-4 bg-tycheBeige shadow rounded">
       {/* Portföy içeriği burada olacak */}
     </div>
   );

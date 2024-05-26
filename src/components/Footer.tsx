@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="p-4 bg-slate-500 shadow mt-4">
+    <footer className="p-4 bg-tycheWhite shadow mt-4">
       <div className="flex justify-between items-center">
         <div className="relative h-8 w-8">
           <Image
@@ -14,8 +14,9 @@ const Footer: React.FC = () => {
             priority
           />
         </div>
-        <div>
-          <p>&copy; {new Date().getFullYear()} Tyche. Tüm Hakları Saklıdır.</p>
+        <div className="flex flex-col items-center">
+          <p>&copy; {new Date().getFullYear()} Tyche</p>
+          <p>Tüm Hakları Saklıdır</p>
         </div>
         <div>
           <a

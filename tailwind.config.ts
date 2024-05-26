@@ -8,10 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        tycheGreen: "#435334",
+        tycheBeige: "#FAF1E4",
+        tycheBlue: "#627EEA",
+        tycheRed: "#F21616",
+        tycheWhite: "#FFFAF3",
+        tycheGray: "#646464",
       },
     },
   },
