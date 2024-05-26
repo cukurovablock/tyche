@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const Portfolio: React.FC = () => {
   return (
-    <div className="p-4 bg-white shadow rounded">
+    <div className="p-4 bg-slate-500 shadow rounded">
       {/* Portföy içeriği burada olacak */}
     </div>
   );

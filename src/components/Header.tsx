@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between p-4 bg-white shadow">
+    <header className="flex items-center justify-between p-4 bg-slate-500 shadow">
       <div className="flex items-center space-x-4">
         <div className="relative h-8 w-8">
           <Image
