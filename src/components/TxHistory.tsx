@@ -1,3 +1,4 @@
+// TxHistory.tsx
 import React from "react";
 
 const TxHistory: React.FC = () => {

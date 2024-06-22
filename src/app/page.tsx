@@ -1,3 +1,4 @@
+// page.tsx
 import React from "react";
 import Portfolio from "@/components/Portfolio";
 import TxHistory from "@/components/TxHistory";
