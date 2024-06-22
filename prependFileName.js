@@ -8,7 +8,7 @@ const directories = [
 ];
 const commentSyntax = "//"; // Change to appropriate comment syntax for your files
 
-function prependFilenameToFiles(directory) {
+function prependOrReplaceFilenameToFiles(directory) {
   fs.readdir(directory, (err, files) => {
     if (err) {
       return console.log("Unable to scan directory: " + err);
@@ -21,26 +21,34 @@ function prependFilenameToFiles(directory) {
       // Check if the file has a .tsx or .js extension
       if (fs.lstatSync(filePath).isDirectory()) {
         // Recursively process directories
-        prependFilenameToFiles(filePath);
+        prependOrReplaceFilenameToFiles(filePath);
       } else if (fileExtension === ".tsx" || fileExtension === ".js") {
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) throw err;
 
           const relativeFilePath = path.relative(__dirname, filePath);
-          const commentLine = `${commentSyntax} ${relativeFilePath}\n`;
+          const commentLine = `${commentSyntax} ${relativeFilePath}`;
+          const lines = data.split("\n");
 
-          // Check if the file already has the comment
-          if (!data.startsWith(commentLine)) {
-            const updatedData = commentLine + data;
-            fs.writeFile(filePath, updatedData, "utf8", (err) => {
-              if (err) throw err;
-              console.log(`Prepended file path to ${relativeFilePath}`);
-            });
+          // Check if the first line is a file name comment
+          if (
+            lines[0].startsWith(commentSyntax) &&
+            lines[0].includes(path.basename(filePath))
+          ) {
+            lines[0] = commentLine;
+          } else {
+            lines.unshift(commentLine);
           }
+
+          const updatedData = lines.join("\n");
+          fs.writeFile(filePath, updatedData, "utf8", (err) => {
+            if (err) throw err;
+            console.log(`Updated file path in ${relativeFilePath}`);
+          });
         });
       }
     });
   });
 }
 
-directories.forEach((directory) => prependFilenameToFiles(directory));
+directories.forEach((directory) => prependOrReplaceFilenameToFiles(directory));
