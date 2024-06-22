@@ -1,20 +1,33 @@
+├── .DS_Store
 ├── .eslintrc.json
 ├── .gitignore
+├── Desktop - 3.jpg
 ├── LICENSE
+├── new.tree
 ├── next-env.d.ts
 ├── next.config.mjs
 ├── package.json
 ├── pnpm-lock.yaml
 ├── postcss.config.mjs
 ├── public
-│  ├── next.svg
-│  └── vercel.svg
+│  └── tyche.png
 ├── README.md
 ├── src
-│  └── app
-│    ├── favicon.ico
-│    ├── globals.css
-│    ├── layout.tsx
-│    └── page.tsx
+│  ├── .DS_Store
+│  ├── app
+│  │  ├── favicon.ico
+│  │  ├── globals.css
+│  │  ├── layout.tsx
+│  │  └── page.tsx
+│  ├── components
+│  │  ├── Dapps.tsx
+│  │  ├── Footer.tsx
+│  │  ├── Header.tsx
+│  │  ├── NetworkDropdown.tsx
+│  │  ├── Portfolio.tsx
+│  │  ├── SearchBar.tsx
+│  │  ├── Settings.tsx
+│  │  └── TxHistory.tsx
+│  └── services
 ├── tailwind.config.ts
 └── tsconfig.json

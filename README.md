@@ -1,4 +1,10 @@
-# This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+
+Project structure
+
+`struct -i .next -o new.tree`
+
+<https://twitter.com/muffafa/status/1794790961589199010>
 
 ## Getting Started
 
