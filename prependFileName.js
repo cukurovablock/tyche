@@ -26,15 +26,15 @@ function prependFilenameToFiles(directory) {
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) throw err;
 
-          const fileName = path.basename(filePath);
-          const commentLine = `${commentSyntax} ${fileName}\n`;
+          const relativeFilePath = path.relative(__dirname, filePath);
+          const commentLine = `${commentSyntax} ${relativeFilePath}\n`;
 
           // Check if the file already has the comment
           if (!data.startsWith(commentLine)) {
             const updatedData = commentLine + data;
             fs.writeFile(filePath, updatedData, "utf8", (err) => {
               if (err) throw err;
-              console.log(`Prepended file name to ${fileName}`);
+              console.log(`Prepended file path to ${relativeFilePath}`);
             });
           }
         });
