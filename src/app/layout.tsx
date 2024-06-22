@@ -20,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen flex flex-col bg-tycheWhite text-tycheGray">
-          <Header />
+        <div className="mxin-h-screen flex flex-col bg-tycheWhite text-tycheGray">
           <>{children}</>
-          <Footer />
         </div>
       </body>
     </html>
