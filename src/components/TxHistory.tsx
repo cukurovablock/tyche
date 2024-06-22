@@ -1,4 +1,4 @@
-// TxHistory.tsx
+// src/components/TxHistory.tsx
 import React from "react";
 
 const TxHistory: React.FC = () => {
