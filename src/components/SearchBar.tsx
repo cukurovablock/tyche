@@ -13,17 +13,17 @@ const SearchBar: React.FC<{ onSearch: (address: string) => void }> = ({
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex w-full max-w-lg mx-auto">
       <input
         type="text"
         placeholder="Cüzdan adresinizi giriniz!"
+        className="p-2 border border-gray-300 rounded-l w-full"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
-        className="p-2 border border-gray-300 rounded"
       />
       <button
         onClick={handleSearch}
-        className="p-2 bg-blue-500 text-white rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded-r"
       >
         Ara
       </button>

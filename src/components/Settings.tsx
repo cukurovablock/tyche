@@ -1,8 +1,14 @@
 // src/components/Settings.tsx
+"use client";
+
 import React from "react";
 
-const Header: React.FC = () => {
-  return <div>Ayarlar</div>;
+const Settings: React.FC<{ className?: string }> = ({ className }) => {
+  return (
+    <div className={`p-2 border border-gray-300 rounded ${className}`}>
+      Ayarlar
+    </div>
+  );
 };
 
-export default Header;
+export default Settings;

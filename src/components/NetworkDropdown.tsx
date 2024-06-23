@@ -5,15 +5,12 @@ import React from "react";
 
 const NetworkDropdown: React.FC<{
   onNetworkChange: (network: string) => void;
-}> = ({ onNetworkChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onNetworkChange(e.target.value);
-  };
-
+  className?: string;
+}> = ({ onNetworkChange, className }) => {
   return (
     <select
-      className="p-2 border border-gray-300 rounded"
-      onChange={handleChange}
+      className={`p-2 border border-gray-300 rounded ${className}`}
+      onChange={(e) => onNetworkChange(e.target.value)}
     >
       <option value="ethereum">Ethereum</option>
       <option value="bitcoin">Bitcoin</option>
