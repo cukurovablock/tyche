@@ -11,11 +11,11 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow container mx-auto p-4 grid grid-cols-12 gap-4">
-        <div className="col-span-4 space-y-4">
+        <div className="lg:col-span-4 col-span-12 space-y-4">
           <Portfolio />
           <Dapps />
         </div>
-        <div className="col-span-8">
+        <div className="lg:col-span-8 col-span-12">
           <TxHistory />
         </div>
       </main>

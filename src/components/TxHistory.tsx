@@ -11,15 +11,6 @@ const transactions = [
     to: "muffafa",
     amount: "0.1 ETH",
     value: "93,164.96 TRY",
-    type: "in",
-  },
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
     type: "out",
   },
   {
@@ -49,13 +40,29 @@ const transactions = [
     value: "93,164.96 TRY",
     type: "in",
   },
+  {
+    date: "14 Mayıs 2024",
+    time: "22:10:28",
+    from: "c3f511g...",
+    to: "muffafa",
+    amount: "0.1 ETH",
+    value: "93,164.96 TRY",
+    type: "in",
+  },
+  
 ];
 
 const TxHistory: React.FC = () => {
   return (
     <div className="p-4 bg-tycheBeige shadow rounded col-span-8">
       <h2 className="text-lg font-semibold mb-4">İşlem Geçmişi</h2>
-      <div className="space-y-4">
+      <div
+        className={`space-y-4 ${
+          transactions.length > 5
+            ? "max-h-[578px] overflow-y-scroll"
+            : "min-h-[578px] "
+        }`}
+      >
         {transactions.map((tx, index) => (
           <div
             key={index}
