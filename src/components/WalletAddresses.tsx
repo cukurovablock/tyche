@@ -1,3 +1,4 @@
+// src/components/WalletAddresses.tsx
 "use client";
 
 import React, { useState } from "react";

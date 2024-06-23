@@ -1,3 +1,4 @@
+// src/components/SettingsModal.tsx
 "use client";
 
 import React from "react";

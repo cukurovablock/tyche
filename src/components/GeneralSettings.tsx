@@ -1,3 +1,4 @@
+// src/components/GeneralSettings.tsx
 "use client";
 
 import React, { useState } from "react";
