@@ -1,15 +1,15 @@
 // src/components/SearchBar.tsx
 "use client";
+
 import React, { useState } from "react";
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ onSearch: (address: string) => void }> = ({
+  onSearch,
+}) => {
   const [address, setAddress] = useState("");
 
   const handleSearch = () => {
-    // Bu fonksiyon arama butonuna tıklandığında çalışacak
-    // Burada arayüz değişikliklerini ve API çağrılarını yapabilirsiniz
-    console.log("Arama yapılıyor:", address);
-    // Örneğin, bir API çağrısı yaparak verileri çekebilirsiniz
+    onSearch(address);
   };
 
   return (

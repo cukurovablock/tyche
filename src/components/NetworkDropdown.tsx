@@ -1,9 +1,19 @@
-// src/components/NetworkDropdown.tsx
-import React from 'react';
+"use client";
 
-const NetworkDropdown: React.FC = () => {
+import React from "react";
+
+const NetworkDropdown: React.FC<{
+  onNetworkChange: (network: string) => void;
+}> = ({ onNetworkChange }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onNetworkChange(e.target.value);
+  };
+
   return (
-    <select className="p-2 border border-gray-300 rounded">
+    <select
+      className="p-2 border border-gray-300 rounded"
+      onChange={handleChange}
+    >
       <option value="ethereum">Ethereum</option>
       <option value="bitcoin">Bitcoin</option>
       <option value="bnb">BNB Smart Chain</option>

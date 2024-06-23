@@ -1,11 +1,13 @@
 // src/components/Header.tsx
+"use client";
+
 import React from "react";
 import SearchBar from "./SearchBar";
 import NetworkDropdown from "./NetworkDropdown";
 import Settings from "./Settings";
 import Image from "next/image";
 
-const Header: React.FC = () => {
+const Header: React.FC<{ onSearch: (address: string) => void; onNetworkChange: (network: string) => void }> = ({ onSearch, onNetworkChange }) => {
   return (
     <header className="flex items-center justify-between p-4 bg-tycheWhite shadow">
       <div className="flex items-center space-x-4">
@@ -18,10 +20,10 @@ const Header: React.FC = () => {
             priority
           />
         </div>
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
       </div>
       <div className="flex items-center space-x-4">
-        <NetworkDropdown />
+        <NetworkDropdown onNetworkChange={onNetworkChange} />
         <Settings />
       </div>
     </header>
