@@ -45,8 +45,8 @@ const TxHistory: React.FC<{
       <div
         className={`space-y-4 ${
           transactions.length > 5
-            ? "max-h-[578px] overflow-y-scroll"
-            : "min-h-[578px]"
+            ? "max-h-[510px] overflow-y-scroll"
+            : "min-h-[510px]"
         }`}
       >
         {transactions.map((tx, index) => (
