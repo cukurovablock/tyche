@@ -12,11 +12,11 @@ const NetworkDropdown: React.FC<{
       onChange={(e) => onNetworkChange(e.target.value)}
     >
       <option value="ethereum">Ethereum</option>
-      <option value="bitcoin">Bitcoin</option>
+      {/* <option value="bitcoin">Bitcoin</option>
       <option value="bnb">BNB Smart Chain</option>
       <option value="avalanche">Avalanche</option>
       <option value="solana">Solana</option>
-      <option value="cosmos">Cosmos</option>
+      <option value="cosmos">Cosmos</option> */}
     </select>
   );
 };

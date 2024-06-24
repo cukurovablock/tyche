@@ -73,11 +73,11 @@ const SaveWalletModal: React.FC<{
           onChange={(e) => onNetworkChange(e.target.value)}
         >
           <option value="ethereum">Ethereum</option>
-          <option value="bitcoin">Bitcoin</option>
+          {/* <option value="bitcoin">Bitcoin</option>
           <option value="bnb">BNB Smart Chain</option>
           <option value="avalanche">Avalanche</option>
           <option value="solana">Solana</option>
-          <option value="cosmos">Cosmos</option>
+          <option value="cosmos">Cosmos</option> */}
         </select>
         <div className="flex justify-end space-x-2">
           <button onClick={onClose} className="bg-gray-300 p-2 rounded">
