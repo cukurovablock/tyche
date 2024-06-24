@@ -1,3 +1,4 @@
+// src/services/etherscan.tsx
 import axios from "axios";
 
 const apiKey = process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY;
