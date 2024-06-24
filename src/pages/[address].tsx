@@ -41,7 +41,7 @@ const AddressPage = () => {
     setAddress(address);
     if (typeof window !== "undefined") {
       const network = "ethereum"; // Varsayılan ağ türü, burada güncelleyebilirsiniz
-      router.push(`/${address}?network=${network}`);
+      router.push(`/${address}?network=${network}`).then(() => router.reload());
     }
   };
 

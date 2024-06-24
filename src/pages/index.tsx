@@ -10,8 +10,10 @@ import TxHistory from "@/components/TxHistory";
 import Dapps from "@/components/Dapps";
 import SaveWalletModal from "@/components/SaveWalletModal";
 import SearchBar from "@/components/SearchBar";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const { address, setAddress, wallets } = useAppContext();
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [network, setNetwork] = useState("ethereum");
@@ -24,6 +26,7 @@ export default function Home() {
       setIsSaveModalOpen(true);
     } else {
       setAddress(address);
+      router.push(`/${address}?network=${network}`).then(() => router.reload());
     }
   };
 

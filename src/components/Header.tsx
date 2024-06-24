@@ -19,7 +19,7 @@ const Header: React.FC<{
   const handleLogoClick = () => {
     setAddress(""); // Adresi resetle
     onNetworkChange("ethereum"); // Ağ tipini resetle
-    router.replace("/");
+    router.replace("/").then(() => router.reload()); // Yönlendirme sonrası sayfayı yeniden yükleyin
   };
 
   return (
