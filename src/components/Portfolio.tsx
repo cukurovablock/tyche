@@ -20,14 +20,14 @@ const Portfolio: React.FC<{ balance: string | null }> = ({ balance }) => {
     <div className="p-4 bg-tycheBeige shadow rounded col-span-4">
       <h2 className="text-lg font-semibold mb-4">Portföy</h2>
       <div className="flex justify-between mb-2">
-        <button className="bg-tycheGreen text-white px-4 py-2 rounded">
+        {/* <button className="bg-tycheGreen text-white px-4 py-2 rounded">
           Bakiye
         </button>
         <button className="bg-tycheGray text-white px-4 py-2 rounded">
           NFT
-        </button>
+        </button> */}
       </div>
-      <div className="text-right text-tycheGray mb-2">Grafik Dağılımı</div>
+      {/* <div className="text-right text-tycheGray mb-2">Grafik Dağılımı</div> */}
       {portfolioData.length === 0 ? (
         <p className="text-center text-tycheGray">Bakiyeniz yok</p>
       ) : (
