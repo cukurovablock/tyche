@@ -1,5 +1,7 @@
 // src/components/SaveWalletModal.tsx
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useState } from "react";
 import { useAppContext } from "@/contexts/AppContext";
 
 const SaveWalletModal: React.FC<{
@@ -26,10 +28,6 @@ const SaveWalletModal: React.FC<{
   const { saveWallet } = useAppContext();
   const [inputUsername, setInputUsername] = useState(username);
 
-  useEffect(() => {
-    setInputUsername(username); // username değiştiğinde inputUsername'ı güncelle
-  }, [username]);
-
   if (!isOpen) return null;
 
   const handleSave = () => {
@@ -39,7 +37,7 @@ const SaveWalletModal: React.FC<{
       network.trim() !== ""
     ) {
       saveWallet(address, network, inputUsername);
-      onUsernameChange(inputUsername); // Bu satırı ekleyin
+      onUsernameChange(inputUsername);
       onSave();
       onClose();
     } else {
@@ -50,7 +48,7 @@ const SaveWalletModal: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-4 rounded shadow">
         <h2 className="text-lg font-semibold mb-4">Cüzdanı Kaydet</h2>
         <input
@@ -73,11 +71,11 @@ const SaveWalletModal: React.FC<{
           onChange={(e) => onNetworkChange(e.target.value)}
         >
           <option value="ethereum">Ethereum</option>
-          {/* <option value="bitcoin">Bitcoin</option>
+          <option value="bitcoin">Bitcoin</option>
           <option value="bnb">BNB Smart Chain</option>
           <option value="avalanche">Avalanche</option>
           <option value="solana">Solana</option>
-          <option value="cosmos">Cosmos</option> */}
+          <option value="cosmos">Cosmos</option>
         </select>
         <div className="flex justify-end space-x-2">
           <button onClick={onClose} className="bg-gray-300 p-2 rounded">
