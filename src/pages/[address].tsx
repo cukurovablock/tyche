@@ -1,4 +1,3 @@
-// src/pages/[address].tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import TxHistory from "@/components/TxHistory";
 import Dapps from "@/components/Dapps";
 import SaveWalletModal from "@/components/SaveWalletModal";
 import { useAppContext } from "@/contexts/AppContext";
+import { getWalletBalance, getWalletTransactions } from "@/services/etherscan";
 
 const AddressPage = () => {
   const router = useRouter();
@@ -19,10 +19,13 @@ const AddressPage = () => {
     useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState("");
+  const [balance, setBalance] = useState<string | null>(null);
+  const [transactions, setTransactions] = useState<any[]>([]);
 
   useEffect(() => {
     if (address) {
       setAddress(address);
+      fetchWalletData(address);
     }
     if (network) {
       handleNetworkChange(network);
@@ -37,11 +40,22 @@ const AddressPage = () => {
     }
   }, [address, network, setAddress, handleNetworkChange, wallets]);
 
+  const fetchWalletData = async (address: string) => {
+    try {
+      const balance = await getWalletBalance(address);
+      const transactions = await getWalletTransactions(address);
+      setBalance(balance);
+      setTransactions(transactions.slice(0, 10)); // Son 10 işlem
+    } catch (error) {
+      console.error("Error fetching wallet data:", error);
+    }
+  };
+
   const handleSearch = (address: string) => {
+    const network = "ethereum"; // Varsayılan ağ türü, burada güncelleyebilirsiniz
     setAddress(address);
     if (typeof window !== "undefined") {
-      const network = "ethereum"; // Varsayılan ağ türü, burada güncelleyebilirsiniz
-      router.push(`/${address}?network=${network}`).then(() => router.reload());
+      router.push(`/${address}?network=${network}`);
     }
   };
 
@@ -61,11 +75,11 @@ const AddressPage = () => {
         {address ? (
           <>
             <div className="lg:col-span-4 col-span-12 space-y-4">
-              <Portfolio />
+              <Portfolio balance={balance} />
               <Dapps />
             </div>
             <div className="lg:col-span-8 col-span-12">
-              <TxHistory />
+              <TxHistory transactions={transactions} />
             </div>
           </>
         ) : (

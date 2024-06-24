@@ -1,58 +1,8 @@
-// src/components/TxHistory.tsx
 "use client";
 
 import React from "react";
 
-const transactions = [
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
-    type: "out",
-  },
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
-    type: "in",
-  },
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
-    type: "out",
-  },
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
-    type: "in",
-  },
-  {
-    date: "14 Mayıs 2024",
-    time: "22:10:28",
-    from: "c3f511g...",
-    to: "muffafa",
-    amount: "0.1 ETH",
-    value: "93,164.96 TRY",
-    type: "in",
-  },
-  
-];
-
-const TxHistory: React.FC = () => {
+const TxHistory: React.FC<{ transactions: any[] }> = ({ transactions }) => {
   return (
     <div className="p-4 bg-tycheBeige shadow rounded col-span-8">
       <h2 className="text-lg font-semibold mb-4">İşlem Geçmişi</h2>
@@ -70,7 +20,7 @@ const TxHistory: React.FC = () => {
           >
             <div className="flex-grow">
               <p className="text-sm text-tycheGray">
-                {tx.date} {tx.time}
+                {new Date(parseInt(tx.timeStamp) * 1000).toLocaleString()}
               </p>
               <p className="text-sm">
                 Kimden: <span className="text-tycheBlue">{tx.from}</span>
@@ -81,11 +31,11 @@ const TxHistory: React.FC = () => {
             </div>
             <div
               className={`text-right ${
-                tx.type === "in" ? "bg-tycheGreen" : "bg-tycheRed"
+                tx.isError === "0" ? "bg-tycheGreen" : "bg-tycheRed"
               } text-white p-2 rounded`}
             >
-              <p className="font-semibold">Miktar: {tx.amount}</p>
-              <p>Değer: {tx.value}</p>
+              <p className="font-semibold">Miktar: {tx.value} ETH</p>
+              <p>Durum: {tx.isError === "0" ? "Başarılı" : "Başarısız"}</p>
             </div>
           </div>
         ))}

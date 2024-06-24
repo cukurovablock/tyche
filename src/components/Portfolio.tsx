@@ -1,37 +1,20 @@
-// src/components/Portfolio.tsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
 
-const portfolioData = [
-  {
-    asset: "ETH",
-    amount: "0.1",
-    value: "93,164.96 TRY",
-    imageUrl: "/ethereum.png",
-  },
-  {
-    asset: "ETH",
-    amount: "0.1",
-    value: "93,164.96 TRY",
-    imageUrl: "/ethereum.png",
-  },
-  {
-    asset: "ETH",
-    amount: "0.1",
-    value: "93,164.96 TRY",
-    imageUrl: "/ethereum.png",
-  },
-  {
-    asset: "ETH",
-    amount: "0.1",
-    value: "93,164.96 TRY",
-    imageUrl: "/ethereum.png",
-  },
-];
+const Portfolio: React.FC<{ balance: string | null }> = ({ balance }) => {
+  const portfolioData = balance
+    ? [
+        {
+          asset: "ETH",
+          amount: (parseFloat(balance) / 1e18).toFixed(2),
+          value: `${((parseFloat(balance) / 1e18) * 1000).toFixed(2)} TRY`, // TRY değerini hesaplamak için bir katsayı kullanıyoruz
+          imageUrl: "/ethereum.png",
+        },
+      ]
+    : [];
 
-const Portfolio: React.FC = () => {
   return (
     <div className="p-4 bg-tycheBeige shadow rounded col-span-4">
       <h2 className="text-lg font-semibold mb-4">Portföy</h2>
