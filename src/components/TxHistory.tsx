@@ -1,4 +1,3 @@
-// src/components/TxHistory.tsx
 "use client";
 
 import React from "react";
@@ -12,7 +11,11 @@ const TxHistory: React.FC<{
   transactions: any[];
   currentNetwork: string;
   currentAddress: string;
-}> = ({ transactions, currentNetwork, currentAddress }) => {
+}> = ({
+  transactions = [], // Varsayılan değeri boş bir dizi olarak ayarlayın
+  currentNetwork,
+  currentAddress,
+}) => {
   const { wallets } = useAppContext();
 
   const getUsernameByAddress = (address: string) => {
@@ -45,8 +48,8 @@ const TxHistory: React.FC<{
       <div
         className={`space-y-4 ${
           transactions.length > 5
-            ? "max-h-[510px] overflow-y-scroll"
-            : "min-h-[510px]"
+            ? "max-h-[578px] overflow-y-scroll"
+            : "min-h-[578px]"
         }`}
       >
         {transactions.map((tx, index) => (
@@ -94,9 +97,7 @@ const TxHistory: React.FC<{
             </div>
             <div
               className={`text-right p-2 rounded h-full flex flex-col justify-center ${
-                tx.from.toLowerCase() === currentAddress.toLowerCase()
-                  ? "bg-tycheRed"
-                  : "bg-tycheGreen"
+                tx.to === currentAddress ? "bg-tycheGreen" : "bg-tycheRed"
               } text-white`}
             >
               <p className="font-semibold">

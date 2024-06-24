@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -22,8 +21,8 @@ const AddressPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [balance, setBalance] = useState<string | null>(null);
-  const [transactions, setTransactions] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [transactions, setTransactions] = useState<any[]>([]); // Başlangıçta boş bir dizi olarak ayarla
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (address) {
@@ -44,7 +43,7 @@ const AddressPage = () => {
   }, [address, network, setAddress, handleNetworkChange, wallets]);
 
   const fetchWalletData = async (address: string) => {
-    setLoading(true); // Verileri çekmeye başlarken loading state'i true yap
+    setLoading(true); // Veri çekme işlemi başladığında loading durumunu true yap
     try {
       const balance = await getWalletBalance(address);
       const transactions = await getWalletTransactions(address);
@@ -52,9 +51,8 @@ const AddressPage = () => {
       setTransactions(transactions.slice(0, 10)); // Son 10 işlem
     } catch (error) {
       console.error("Error fetching wallet data:", error);
-    } finally {
-      setLoading(false); // Veriler çekildikten sonra loading state'i false yap
     }
+    setLoading(false); // Veri çekme işlemi tamamlandığında loading durumunu false yap
   };
 
   const handleSearch = (address: string) => {
@@ -68,6 +66,11 @@ const AddressPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  // const handleSave = () => {
+  //   saveWallet(address!, network!, username);
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <div className="min-h-screen flex flex-col">
