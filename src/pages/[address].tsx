@@ -22,6 +22,7 @@ const AddressPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // console.log("useEffect - Address or Network Changed", { address, network });
     if (address) {
       setAddress(address);
       fetchWalletData(address);
@@ -33,9 +34,11 @@ const AddressPage = () => {
 
   const fetchWalletData = async (address: string) => {
     setLoading(true); // Veri çekme işlemi başladığında loading durumunu true yap
+    // console.log("Fetching wallet data for address:", address);
     try {
       const balance = await getWalletBalance(address);
       const transactions = await getWalletTransactions(address);
+      // console.log("Fetched data:", { balance, transactions });
       setBalance(balance);
       setTransactions(transactions.slice(0, 10)); // Son 10 işlem
     } catch (error) {
@@ -45,6 +48,7 @@ const AddressPage = () => {
   };
 
   const handleSearch = (address: string) => {
+    // console.log("Search initiated for address:", address);
     const network = "ethereum"; // Varsayılan ağ türü, burada güncelleyebilirsiniz
     setAddress(address);
     if (typeof window !== "undefined") {
