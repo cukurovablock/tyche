@@ -19,7 +19,7 @@ const Settings: React.FC<{ className?: string }> = ({ className }) => {
       </button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="space-y-4 overflow-y-scroll max-h-[512px]">
-          <GeneralSettings />
+          {/* <GeneralSettings /> */}
           <WalletAddresses currentNetwork={network} />{" "}
           {/* currentNetwork prop'u eklendi */}
         </div>
