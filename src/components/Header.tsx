@@ -19,24 +19,24 @@ const Header: React.FC<{
   const handleLogoClick = () => {
     setAddress(""); // Adresi resetle
     onNetworkChange("ethereum"); // Ağ tipini resetle
-    router.replace("/").then(() => router.reload()); // Yönlendirme sonrası sayfayı yeniden yükleyin
+    router.replace("/");
   };
 
   return (
     <header className="flex items-center justify-between p-4 bg-tycheWhite shadow">
-      <div className="flex items-center space-x-4">
-        <div
-          className="relative h-8 w-8 cursor-pointer"
-          onClick={handleLogoClick}
-        >
-          <Image
-            src="/tyche.png"
-            alt="Tyche Logo"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+      <div
+        className="relative h-16 w-16 cursor-pointer"
+        onClick={handleLogoClick}
+      >
+        <Image
+          src="/tyche.png"
+          alt="Tyche Logo"
+          layout="fill"
+          objectFit="contain"
+          priority
+        />
+      </div>
+      <div className="flex-grow mx-4">
         <SearchBar onSearch={onSearch} />
       </div>
       <div className="flex items-center space-x-4">

@@ -17,11 +17,11 @@ const SearchBar: React.FC<{ onSearch: (address: string) => void }> = ({
   };
 
   return (
-    <div className="flex w-full">
+    <div className="flex justify-center w-full">
       <input
         type="text"
         placeholder="Cüzdan adresinizi giriniz"
-        className="p-2 border border-gray-300 rounded-l w-full"
+        className="p-2 border border-gray-300 rounded-l w-full max-w-3xl"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
