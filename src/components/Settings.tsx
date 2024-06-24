@@ -1,13 +1,13 @@
 // src/components/Settings.tsx
-"use client";
-
 import React, { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
 import WalletAddresses from "./WalletAddresses";
-import Modal from "./Modal"; // Modal bileşenini import ediyoruz
+import Modal from "./Modal";
+import { useAppContext } from "@/contexts/AppContext";
 
 const Settings: React.FC<{ className?: string }> = ({ className }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Durumları tanımlıyoruz
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { network } = useAppContext(); // current network context'ten alınır
 
   return (
     <div>
@@ -20,7 +20,8 @@ const Settings: React.FC<{ className?: string }> = ({ className }) => {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="space-y-4 overflow-y-scroll max-h-[512px]">
           <GeneralSettings />
-          <WalletAddresses />
+          <WalletAddresses currentNetwork={network} />{" "}
+          {/* currentNetwork prop'u eklendi */}
         </div>
       </Modal>
     </div>

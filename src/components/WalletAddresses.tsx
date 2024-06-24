@@ -1,12 +1,12 @@
 // src/components/WalletAddresses.tsx
-"use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import { useAppContext } from "@/contexts/AppContext";
 import SaveWalletModal from "./SaveWalletModal";
 
-const WalletAddresses: React.FC = () => {
+const WalletAddresses: React.FC<{ currentNetwork: string }> = ({
+  currentNetwork,
+}) => {
   const { wallets, saveWallet, deleteWallet } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState("");
@@ -40,7 +40,7 @@ const WalletAddresses: React.FC = () => {
   };
 
   const handleDelete = (address: string, network: string) => {
-    deleteWallet(address, network); // Artık ağ parametresini de geçiriyoruz
+    deleteWallet(address, network);
   };
 
   const shortenAddress = (address: string) => `${address.slice(0, 7)}...`;
@@ -49,7 +49,7 @@ const WalletAddresses: React.FC = () => {
     <div className="p-4 bg-tycheBeige shadow rounded col-span-4">
       <h2 className="text-lg font-semibold mb-4">Cüzdan Adresleri</h2>
       <button
-        onClick={() => handleOpenModal("", "", "ethereum")}
+        onClick={() => handleOpenModal("", "", currentNetwork)}
         className="bg-green-500 text-white px-4 py-2 rounded mb-4"
       >
         Yeni Cüzdan Adresi Ekle

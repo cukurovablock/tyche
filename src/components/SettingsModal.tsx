@@ -44,7 +44,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
           placeholder="Kullanıcı adı"
           className="p-2 border border-gray-300 rounded w-full mb-4"
           value={username}
-          onChange={(e) => onUsernameChange(e.target.value)}
+          onChange={(e) => onUsernameChange(e.target.value)} // Bu satırı ekleyin
         />
         <select
           className="p-2 border border-gray-300 rounded w-full mb-4"

@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,13 +16,14 @@ import { getWalletBalance, getWalletTransactions } from "@/services/etherscan";
 const AddressPage = () => {
   const router = useRouter();
   const address = router.query.address as string | undefined;
-  const network = router.query.network as string | undefined;
+  const network = (router.query.network as string) || "ethereum"; // Varsayılan ağ türü
   const { setAddress, handleNetworkChange, wallets, saveWallet } =
     useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [balance, setBalance] = useState<string | null>(null);
   const [transactions, setTransactions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     if (address) {
@@ -42,6 +44,7 @@ const AddressPage = () => {
   }, [address, network, setAddress, handleNetworkChange, wallets]);
 
   const fetchWalletData = async (address: string) => {
+    setLoading(true); // Verileri çekmeye başlarken loading state'i true yap
     try {
       const balance = await getWalletBalance(address);
       const transactions = await getWalletTransactions(address);
@@ -49,6 +52,8 @@ const AddressPage = () => {
       setTransactions(transactions.slice(0, 10)); // Son 10 işlem
     } catch (error) {
       console.error("Error fetching wallet data:", error);
+    } finally {
+      setLoading(false); // Veriler çekildikten sonra loading state'i false yap
     }
   };
 
@@ -73,14 +78,22 @@ const AddressPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header onSearch={handleSearch} onNetworkChange={handleNetworkChange} />
       <main className="flex-grow container mx-auto p-4 grid grid-cols-12 gap-4">
-        {address ? (
+        {loading ? (
+          <div className="col-span-12 text-center">
+            <p className="text-lg font-semibold mb-4">Yükleniyor...</p>
+          </div>
+        ) : address ? (
           <>
             <div className="lg:col-span-4 col-span-12 space-y-4">
               <Portfolio balance={balance} />
               <Dapps />
             </div>
             <div className="lg:col-span-8 col-span-12">
-              <TxHistory transactions={transactions} />
+              <TxHistory
+                transactions={transactions}
+                currentNetwork={network || "ethereum"}
+                currentAddress={address}
+              />
             </div>
           </>
         ) : (
