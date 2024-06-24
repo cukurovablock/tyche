@@ -1,4 +1,3 @@
-// src/components/SaveWalletModal.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -26,16 +25,18 @@ const SaveWalletModal: React.FC<{
   onSave,
 }) => {
   const { saveWallet } = useAppContext();
+  const [inputUsername, setInputUsername] = useState(username);
 
   if (!isOpen) return null;
 
   const handleSave = () => {
     if (
       address.trim() !== "" &&
-      username.trim() !== "" &&
+      inputUsername.trim() !== "" &&
       network.trim() !== ""
     ) {
-      saveWallet(address, network, username);
+      saveWallet(address, network, inputUsername);
+      onSave();
       onClose();
     } else {
       alert(
@@ -59,8 +60,8 @@ const SaveWalletModal: React.FC<{
           type="text"
           placeholder="Kullanıcı adı"
           className="p-2 border border-gray-300 rounded w-full mb-4"
-          value={username}
-          onChange={(e) => onUsernameChange(e.target.value)}
+          value={inputUsername}
+          onChange={(e) => setInputUsername(e.target.value)}
         />
         <select
           className="p-2 border border-gray-300 rounded w-full mb-4"
