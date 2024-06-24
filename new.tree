@@ -1,7 +1,24 @@
 ├── .DS_Store
 ├── .eslintrc.json
 ├── .gitignore
-├── Desktop - 3.jpg
+│  └── _
+│    ├── .gitignore
+│    ├── applypatch-msg
+│    ├── commit-msg
+│    ├── h
+│    ├── husky.sh
+│    ├── post-applypatch
+│    ├── post-checkout
+│    ├── post-commit
+│    ├── post-merge
+│    ├── post-rewrite
+│    ├── pre-applypatch
+│    ├── pre-auto-gc
+│    ├── pre-commit
+│    ├── pre-push
+│    ├── pre-rebase
+│    └── prepare-commit-msg
+├── design-tyche.jpg
 ├── LICENSE
 ├── new.tree
 ├── next-env.d.ts
@@ -9,25 +26,48 @@
 ├── package.json
 ├── pnpm-lock.yaml
 ├── postcss.config.mjs
+├── prependFileName.js
 ├── public
-│  └── tyche.png
+│  ├── .DS_Store
+│  ├── aave.png
+│  ├── compound.png
+│  ├── ethereum.png
+│  ├── işlem geçmişi.png
+│  ├── Merkeziyetsiz Uygulama.png
+│  ├── sushiswap.png
+│  ├── tyche.png
+│  └── uniswap.png
 ├── README.md
 ├── src
 │  ├── .DS_Store
 │  ├── app
 │  │  ├── favicon.ico
 │  │  ├── globals.css
-│  │  ├── layout.tsx
-│  │  └── page.tsx
+│  │  └── layout.tsx
 │  ├── components
 │  │  ├── Dapps.tsx
 │  │  ├── Footer.tsx
+│  │  ├── GeneralSettings.tsx
 │  │  ├── Header.tsx
+│  │  ├── Modal.tsx
 │  │  ├── NetworkDropdown.tsx
 │  │  ├── Portfolio.tsx
+│  │  ├── SaveWalletModal.tsx
 │  │  ├── SearchBar.tsx
 │  │  ├── Settings.tsx
-│  │  └── TxHistory.tsx
-│  └── services
+│  │  ├── SettingsModal.tsx
+│  │  ├── TxHistory.tsx
+│  │  └── WalletAddresses.tsx
+│  ├── contexts
+│  │  └── AppContext.tsx
+│  ├── helpers
+│  │  └── storage.ts
+│  ├── pages
+│  │  ├── _app.tsx
+│  │  ├── [address].tsx
+│  │  └── index.tsx
+│  ├── services
+│  └── styles
+│    └── globals.css
 ├── tailwind.config.ts
 └── tsconfig.json

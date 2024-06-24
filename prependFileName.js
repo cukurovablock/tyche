@@ -5,6 +5,8 @@ const directories = [
   path.join(__dirname, "src", "app"),
   path.join(__dirname, "src", "components"),
   path.join(__dirname, "src", "services"),
+  path.join(__dirname, "src", "contexts"),
+  path.join(__dirname, "src", "pages"),
 ];
 const commentSyntax = "//"; // Change to appropriate comment syntax for your files
 
