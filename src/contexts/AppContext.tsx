@@ -16,7 +16,7 @@ interface AppContextType {
   handleNetworkChange: (network: string) => void;
   wallets: Wallet[];
   saveWallet: (address: string, network: string, username: string) => void;
-  deleteWallet: (address: string) => void;
+  deleteWallet: (address: string, network: string) => void; // Burayı güncelliyoruz
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -39,9 +39,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("wallets", JSON.stringify(updatedWallets));
   };
 
-  const deleteWallet = (address: string) => {
+  const deleteWallet = (address: string, network: string) => {
     const updatedWallets = wallets.filter(
-      (wallet) => wallet.address !== address
+      (wallet) => !(wallet.address === address && wallet.network === network)
     );
     setWallets(updatedWallets);
     localStorage.setItem("wallets", JSON.stringify(updatedWallets));

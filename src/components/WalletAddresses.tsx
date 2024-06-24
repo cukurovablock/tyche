@@ -39,8 +39,8 @@ const WalletAddresses: React.FC = () => {
     }
   };
 
-  const handleDelete = (address: string) => {
-    deleteWallet(address);
+  const handleDelete = (address: string, network: string) => {
+    deleteWallet(address, network); // Artık ağ parametresini de geçiriyoruz
   };
 
   const shortenAddress = (address: string) => `${address.slice(0, 7)}...`;
@@ -75,10 +75,13 @@ const WalletAddresses: React.FC = () => {
           <table className="w-full text-left">
             <tbody>
               {wallets.map((wallet, index) => (
-                <tr key={wallet.address} className="bg-tycheWhite rounded">
+                <tr
+                  key={wallet.address + wallet.network}
+                  className="bg-tycheWhite rounded"
+                >
                   <td className="p-2">
                     <Link
-                      href={`/${wallet.address}`}
+                      href={`/${wallet.address}?network=${wallet.network}`}
                       className="text-tycheBlue"
                     >
                       {shortenAddress(wallet.address)}
@@ -100,7 +103,9 @@ const WalletAddresses: React.FC = () => {
                       Düzenle
                     </button>
                     <button
-                      onClick={() => handleDelete(wallet.address)}
+                      onClick={() =>
+                        handleDelete(wallet.address, wallet.network)
+                      }
                       className="bg-red-500 text-white px-2 py-1 rounded"
                     >
                       Sil
