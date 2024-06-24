@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import Portfolio from "@/components/Portfolio";
 import TxHistory from "@/components/TxHistory";
 import Dapps from "@/components/Dapps";
-import SaveWalletModal from "@/components/SaveWalletModal";
 import { useAppContext } from "@/contexts/AppContext";
 import { getWalletBalance, getWalletTransactions } from "@/services/etherscan";
 
@@ -18,8 +17,6 @@ const AddressPage = () => {
   const network = (router.query.network as string) || "ethereum"; // Varsayılan ağ türü
   const { setAddress, handleNetworkChange, wallets, saveWallet } =
     useAppContext();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [username, setUsername] = useState("");
   const [balance, setBalance] = useState<string | null>(null);
   const [transactions, setTransactions] = useState<any[]>([]); // Başlangıçta boş bir dizi olarak ayarla
   const [loading, setLoading] = useState(false);
@@ -31,14 +28,6 @@ const AddressPage = () => {
     }
     if (network) {
       handleNetworkChange(network);
-
-      // // Adres ve ağ kombinasyonu kayıtlı değilse modal'ı aç
-      // const walletExists = wallets.some(
-      //   (wallet) => wallet.address === address && wallet.network === network
-      // );
-      // if (!walletExists) {
-      //   setIsModalOpen(true);
-      // }
     }
   }, [address, network, setAddress, handleNetworkChange, wallets]);
 
@@ -62,15 +51,6 @@ const AddressPage = () => {
       router.push(`/${address}?network=${network}`);
     }
   };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  // const handleSave = () => {
-  //   saveWallet(address!, network!, username);
-  //   setIsModalOpen(false);
-  // };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -106,16 +86,6 @@ const AddressPage = () => {
         )}
       </main>
       <Footer />
-      <SaveWalletModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        address={address!}
-        username={username}
-        network={network!}
-        onAddressChange={setAddress}
-        onUsernameChange={setUsername}
-        onNetworkChange={handleNetworkChange}
-      />
     </div>
   );
 };
