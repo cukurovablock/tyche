@@ -1,3 +1,4 @@
+// src/pages/_app.tsx
 import { AppProvider } from "@/contexts/AppContext";
 import { AppProps } from "next/app";
 import "../styles/globals.css"; // Dosya yolunu doğru şekilde ayarlayın
