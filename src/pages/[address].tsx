@@ -14,8 +14,10 @@ const AddressPage = () => {
   const router = useRouter();
   const address = router.query.address as string | undefined;
   const network = router.query.network as string | undefined;
-  const { setAddress, handleNetworkChange, wallets } = useAppContext();
+  const { setAddress, handleNetworkChange, wallets, saveWallet } =
+    useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (address) {
@@ -46,9 +48,14 @@ const AddressPage = () => {
     setIsModalOpen(false);
   };
 
+  const handleSave = () => {
+    saveWallet(address!, network!, username);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header onSearch={handleSearch} />
+      <Header onSearch={handleSearch} onNetworkChange={handleNetworkChange} />
       <main className="flex-grow container mx-auto p-4 grid grid-cols-12 gap-4">
         {address ? (
           <>
@@ -72,13 +79,17 @@ const AddressPage = () => {
         )}
       </main>
       <Footer />
-      {isModalOpen && (
-        <SaveWalletModal
-          address={address!}
-          network={network!}
-          onClose={closeModal}
-        />
-      )}
+      <SaveWalletModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        address={address!}
+        username={username}
+        network={network!}
+        onAddressChange={setAddress}
+        onUsernameChange={setUsername}
+        onNetworkChange={handleNetworkChange}
+        onSave={handleSave}
+      />
     </div>
   );
 };

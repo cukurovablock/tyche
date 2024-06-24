@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 "use client";
 
 import React from "react";
@@ -9,15 +8,16 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useAppContext } from "@/contexts/AppContext";
 
-const Header: React.FC<{ onSearch: (address: string) => void }> = ({
-  onSearch,
-}) => {
-  const { handleNetworkChange, setAddress } = useAppContext();
+const Header: React.FC<{
+  onSearch: (address: string) => void;
+  onNetworkChange: (network: string) => void;
+}> = ({ onSearch, onNetworkChange }) => {
+  const { setAddress } = useAppContext();
   const router = useRouter();
 
   const handleLogoClick = () => {
     setAddress(""); // Adresi resetle
-    handleNetworkChange("ethereum"); // Ağ tipini resetle
+    onNetworkChange("ethereum"); // Ağ tipini resetle
     router.replace("/");
   };
 
@@ -39,7 +39,7 @@ const Header: React.FC<{ onSearch: (address: string) => void }> = ({
         <SearchBar onSearch={onSearch} />
       </div>
       <div className="flex items-center space-x-4">
-        <NetworkDropdown onNetworkChange={handleNetworkChange} />
+        <NetworkDropdown onNetworkChange={onNetworkChange} />
         <Settings />
       </div>
     </header>
