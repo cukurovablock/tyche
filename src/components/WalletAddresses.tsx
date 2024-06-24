@@ -24,21 +24,6 @@ const WalletAddresses: React.FC<{ currentNetwork: string }> = ({
     setIsModalOpen(true);
   };
 
-  const handleSave = () => {
-    if (
-      editingAddress.trim() !== "" &&
-      editingUsername.trim() !== "" &&
-      editingNetwork.trim() !== ""
-    ) {
-      saveWallet(editingAddress, editingNetwork, editingUsername);
-      setIsModalOpen(false);
-    } else {
-      alert(
-        "Lütfen geçerli bir cüzdan adresi, kullanıcı adı ve ağ tipi girin."
-      );
-    }
-  };
-
   const handleDelete = (address: string, network: string) => {
     deleteWallet(address, network);
   };
@@ -90,7 +75,7 @@ const WalletAddresses: React.FC<{ currentNetwork: string }> = ({
                   <td className="p-2">{wallet.username}</td>
                   <td className="p-2">{wallet.network}</td>
                   <td className="p-2 flex space-x-2">
-                    <button
+                    {/* <button
                       onClick={() =>
                         handleOpenModal(
                           wallet.address,
@@ -101,7 +86,7 @@ const WalletAddresses: React.FC<{ currentNetwork: string }> = ({
                       className="bg-yellow-500 text-white px-2 py-1 rounded"
                     >
                       Düzenle
-                    </button>
+                    </button> */}
                     <button
                       onClick={() =>
                         handleDelete(wallet.address, wallet.network)
@@ -126,7 +111,6 @@ const WalletAddresses: React.FC<{ currentNetwork: string }> = ({
         onAddressChange={setEditingAddress}
         onUsernameChange={setEditingUsername}
         onNetworkChange={setEditingNetwork}
-        onSave={handleSave}
       />
     </div>
   );

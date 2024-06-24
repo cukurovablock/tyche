@@ -33,13 +33,13 @@ const AddressPage = () => {
     if (network) {
       handleNetworkChange(network);
 
-      // Adres ve ağ kombinasyonu kayıtlı değilse modal'ı aç
-      const walletExists = wallets.some(
-        (wallet) => wallet.address === address && wallet.network === network
-      );
-      if (!walletExists) {
-        setIsModalOpen(true);
-      }
+      // // Adres ve ağ kombinasyonu kayıtlı değilse modal'ı aç
+      // const walletExists = wallets.some(
+      //   (wallet) => wallet.address === address && wallet.network === network
+      // );
+      // if (!walletExists) {
+      //   setIsModalOpen(true);
+      // }
     }
   }, [address, network, setAddress, handleNetworkChange, wallets]);
 
@@ -66,11 +66,6 @@ const AddressPage = () => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSave = () => {
-    saveWallet(address!, network!, username);
     setIsModalOpen(false);
   };
 
@@ -117,7 +112,6 @@ const AddressPage = () => {
         onAddressChange={setAddress}
         onUsernameChange={setUsername}
         onNetworkChange={handleNetworkChange}
-        onSave={handleSave}
       />
     </div>
   );

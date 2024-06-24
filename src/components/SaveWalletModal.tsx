@@ -13,7 +13,6 @@ const SaveWalletModal: React.FC<{
   onAddressChange: (address: string) => void;
   onUsernameChange: (username: string) => void;
   onNetworkChange: (network: string) => void;
-  onSave: () => void;
 }> = ({
   isOpen,
   onClose,
@@ -23,7 +22,6 @@ const SaveWalletModal: React.FC<{
   onAddressChange,
   onUsernameChange,
   onNetworkChange,
-  onSave,
 }) => {
   const { saveWallet } = useAppContext();
   const [inputUsername, setInputUsername] = useState(username);
@@ -31,20 +29,9 @@ const SaveWalletModal: React.FC<{
   if (!isOpen) return null;
 
   const handleSave = () => {
-    if (
-      address.trim() !== "" &&
-      inputUsername.trim() !== "" &&
-      network.trim() !== ""
-    ) {
-      saveWallet(address, network, inputUsername);
-      onUsernameChange(inputUsername);
-      onSave();
-      onClose();
-    } else {
-      alert(
-        "Lütfen geçerli bir cüzdan adresi, kullanıcı adı ve ağ tipi girin."
-      );
-    }
+    saveWallet(address, network, inputUsername);
+    onUsernameChange(inputUsername);
+    onClose();
   };
 
   return (
